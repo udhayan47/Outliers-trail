@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "894474988649",
+    "project_id": "outliers-6c171",
+    "storage_bucket": "outliers-6c171.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:894474988649:android:0e676c3ed6827fca2b86f8",
+        "android_client_info": {
+          "package_name": "com.example.outliers"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "894474988649-ue4mr9dimit5a8i9vva7lfnbvmjlaij5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTYnRVG0JBpF8xU4u0Y-T_3sibgl18YOI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "894474988649-ue4mr9dimit5a8i9vva7lfnbvmjlaij5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
