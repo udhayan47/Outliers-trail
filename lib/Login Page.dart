@@ -35,7 +35,8 @@ class LoginDemo extends StatefulWidget {
 // );
 // }
 class _LoginDemoState extends State<LoginDemo> {
-
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
   @override
   build(BuildContext context) {
     return Scaffold(
