@@ -1,10 +1,16 @@
+// ignore_for_file: prefer_const_constructors
+
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:outliers/Login%20Page.dart';
+
+import 'HomePage.dart';
 void main() {
   runApp(const signup());
-
+  Firebase.initializeApp();
 }
 
 
@@ -35,6 +41,24 @@ class LoginDemo extends StatefulWidget {
 // );
 // }
 class _LoginDemoState extends State<LoginDemo> {
+  final usernameController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  void update()
+    {
+      FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
+          // username:usernameController,
+          email: emailController.text,
+          password: passwordController.text)
+          .then((value) {
+        print("Created New Account");
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => Home()));
+      }).onError((error, stackTrace) {
+        print("Error ${error.toString()}");
+      });
+  }
 
   @override
   build(BuildContext context) {
@@ -60,10 +84,11 @@ class _LoginDemoState extends State<LoginDemo> {
                     child: Image.asset('assets/images/sandclock.jpeg')),
               ),
             ),
-            const Padding(
+             Padding(
               //padding: const EdgeInsets.only(left:15.0,right: 15.0,top:0,bottom: 0),
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
+                controller: usernameController,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
@@ -79,10 +104,11 @@ class _LoginDemoState extends State<LoginDemo> {
 
               ],
             ),
-            const Padding(
+             Padding(
               //padding: const EdgeInsets.only(left:15.0,right: 15.0,top:0,bottom: 0),
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
+                controller: emailController,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
@@ -97,12 +123,12 @@ class _LoginDemoState extends State<LoginDemo> {
 
               ],
             ),
-            const Padding(
+             Padding(
               padding: EdgeInsets.only(
                   left: 15.0, right: 15.0, top: 15, bottom: 0),
               //padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
-
+                controller: passwordController,
                 obscureText: true,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
@@ -158,7 +184,8 @@ class _LoginDemoState extends State<LoginDemo> {
                   color: const Color.fromRGBO(130, 32, 92,1), borderRadius: BorderRadius.circular(20)),
               child: TextButton(
                 onPressed: () {
-                  print("Account Created  Successfully");
+                  update();
+
                 },
                 child: const Text(
                   'SignUp',

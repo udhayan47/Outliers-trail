@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "894474988649",
-    "project_id": "outliers-6c171",
-    "storage_bucket": "outliers-6c171.appspot.com"
+    "project_number": "930434451057",
+    "project_id": "outliers1-d3dd1",
+    "storage_bucket": "outliers1-d3dd1.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:894474988649:android:0e676c3ed6827fca2b86f8",
+        "mobilesdk_app_id": "1:930434451057:android:ec8430baabad4f0840bdd0",
         "android_client_info": {
           "package_name": "com.example.outliers"
         }
       },
       "oauth_client": [
         {
-          "client_id": "894474988649-ue4mr9dimit5a8i9vva7lfnbvmjlaij5.apps.googleusercontent.com",
+          "client_id": "930434451057-aalrjg3sb1avn2kjmsq5cqmrs9ubhupu.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCTYnRVG0JBpF8xU4u0Y-T_3sibgl18YOI"
+          "current_key": "AIzaSyAuFD7aR6h0iJvmhzZ8Yqc4-2ERRviPy7Q"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "894474988649-ue4mr9dimit5a8i9vva7lfnbvmjlaij5.apps.googleusercontent.com",
+              "client_id": "930434451057-aalrjg3sb1avn2kjmsq5cqmrs9ubhupu.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

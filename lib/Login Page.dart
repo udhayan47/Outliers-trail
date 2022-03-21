@@ -1,9 +1,16 @@
+// ignore_for_file: prefer_const_constructors
+
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:outliers/Signup.dart';
+
+import 'HomePage.dart';
 void main() {
   runApp(const login());
+  Firebase.initializeApp();
 
 }
 
@@ -35,14 +42,31 @@ class LoginDemo extends StatefulWidget {
 // );
 // }
 class _LoginDemoState extends State<LoginDemo> {
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final _auth = FirebaseAuth.instance;
+
+  void validate() {
+    FirebaseAuth.instance
+        .signInWithEmailAndPassword(
+        email: emailController.text,
+        password: passwordController.text)
+        .then((value) {
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => Home()));
+    }).onError((error, stackTrace) {
+      print("Error ${error.toString()}");
+    });
+  }
+
+
   @override
   build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor:const Color.fromRGBO(130, 32, 92,1) ,
+        backgroundColor: const Color.fromRGBO(130, 32, 92, 1),
         title: const Text("Login Page"),
 
       ),
@@ -55,29 +79,27 @@ class _LoginDemoState extends State<LoginDemo> {
                 child: Container(
                     width: 200,
                     height: 250,
-                    /*decoration: BoxDecoration(
-                        color: Colors.red,
-                        borderRadius: BorderRadius.circular(50.0)),*/
                     child: Image.asset('assets/images/sandclock.jpeg')),
               ),
             ),
-            const Padding(
+            Padding(
               //padding: const EdgeInsets.only(left:15.0,right: 15.0,top:0,bottom: 0),
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
+                controller: emailController,
+                key: _formKey,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
-
                     labelText: 'Email',
                     hintText: 'Enter valid email id as abc@gmail.com'),
               ),
             ),
-            const Padding(
+            Padding(
               padding: EdgeInsets.only(
                   left: 15.0, right: 15.0, top: 15, bottom: 0),
               //padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
-
+                controller: passwordController,
                 obscureText: true,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
@@ -86,22 +108,24 @@ class _LoginDemoState extends State<LoginDemo> {
               ),
             ),
             TextButton(
-              onPressed: (){
-
+              onPressed: () {
                 //TODO FORGOT PASSWORD SCREEN GOES HERE
               },
               child: const Text(
                 'Forgot Password',
-                style: TextStyle(color: Color.fromRGBO(130, 32, 92,1), fontSize: 15),
+                style: TextStyle(
+                    color: Color.fromRGBO(130, 32, 92, 1), fontSize: 15),
               ),
             ),
             Container(
               height: 50,
               width: 250,
               decoration: BoxDecoration(
-                  color: const Color.fromRGBO(130, 32, 92,1), borderRadius: BorderRadius.circular(20)),
+                  color: const Color.fromRGBO(130, 32, 92, 1),
+                  borderRadius: BorderRadius.circular(20)),
               child: TextButton(
                 onPressed: () {
+                  validate();
                   print("Logged In Successfully");
                 },
                 child: const Text(
@@ -111,13 +135,16 @@ class _LoginDemoState extends State<LoginDemo> {
               ),
             ),
             TextButton(
-              onPressed: () {Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const signup()));},
+              onPressed: () {
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const signup()));
+              },
               child: const Text(
                 'New User ? Create an  Account',
-                style: TextStyle(color: Color.fromRGBO(130, 32, 92,1), fontSize: 15),
+                style: TextStyle(
+                    color: Color.fromRGBO(130, 32, 92, 1), fontSize: 15),
               ),
             ),
           ],
